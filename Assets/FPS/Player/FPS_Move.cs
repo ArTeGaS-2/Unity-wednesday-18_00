@@ -60,12 +60,12 @@ public class FPS_Move : MonoBehaviour
 
     void MovePlayer()
     {
-        rb.useGravity = true;
+        //rb.useGravity = true;
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 movement = transform.right * moveX + transform.forward * moveZ;
-        if (Input.GetKey(KeyCode.Space)) //&& rb.velocity.y == 0
+        if (Input.GetKey(KeyCode.Space) && rb.velocity.y == 0)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             //rb.velocity = Vector3.up * jumpForce;
@@ -80,7 +80,7 @@ public class FPS_Move : MonoBehaviour
         }
         else
         {
-            rb.velocity = movement * moveSpeed + new Vector3(0, 0, 0); //rb.velocity.y
+            rb.velocity = movement * moveSpeed + new Vector3(0, rb.velocity.y, 0); //rb.velocity.y
         }
     }
     void FlyPlayer()
