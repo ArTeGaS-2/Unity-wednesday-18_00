@@ -61,6 +61,7 @@ public class BuildMenu : MonoBehaviour
                 {
                     ActivateChildObjects(
                         hit.collider.gameObject, "Foundation");
+                    Economy.Instance.MinusFoundation();
                 }
             }
             else
@@ -73,19 +74,22 @@ public class BuildMenu : MonoBehaviour
                 turretPanel.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 1)
                 {
-                    Debug.Log("Турель повинна спавнитись");
                     ActivateChildObjectsFromAnother(
                         hit.collider.gameObject, "Turret_1");
+                    Economy.Instance.MinusCredits();
+
                 }
                 else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 2)
                 {
                     ActivateChildObjectsFromAnother(
                         hit.collider.gameObject, "Turret_2");
+                    Economy.Instance.MinusCredits();
                 }
                 else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 3)
                 {
                     ActivateChildObjectsFromAnother(
                         hit.collider.gameObject, "Turret_3");
+                    Economy.Instance.MinusCredits();
                 }
             }
             else
