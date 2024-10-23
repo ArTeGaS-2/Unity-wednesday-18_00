@@ -17,7 +17,7 @@ public class FPS_Move : MonoBehaviour
     public GameObject weapon;
     public GameObject buildInterface;
 
-    private string gameMode = "Shooter";
+    public static string gameMode = "Shooter";
 
     void Start()
     {
