@@ -25,8 +25,9 @@ public class BuildMenuUpd : MonoBehaviour
     private Color highlightColor = Color.yellow;
     private Color defaultColor = Color.white;
 
+    // Поточний об'єкт (в фокусі камери)
     private GameObject currentObject;
-
+    // Посилання на префаби
     public GameObject foundation;
     public GameObject turret_1;
     public GameObject turret_2;
@@ -52,7 +53,12 @@ public class BuildMenuUpd : MonoBehaviour
 
             if (hit.collider.CompareTag("Foundation"))
             {
-                IfItsFoundation();
+                IfItsFoundation(currentObject);
+                turretPanel.SetActive(true);
+            }
+            else
+            {
+                turretPanel.SetActive(false);
             }
 
             if (hit.collider.CompareTag("Turret_1") ||
@@ -74,9 +80,32 @@ public class BuildMenuUpd : MonoBehaviour
             Instantiate(foundation, spawnPoint, obj.transform.rotation);
         }
     }
-    private void IfItsFoundation()
+    private void IfItsFoundation(GameObject obj)
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 1)
+        {
+            Vector3 spawnPoint = new Vector3(
+                obj.transform.position.x,
+                obj.transform.position.y + 0.38f,
+                obj.transform.position.z);
+            Instantiate(turret_1, spawnPoint, obj.transform.rotation);
+        }
+        else if(Input.GetKeyDown(KeyCode.E) && currentFrameUI == 2)
+        {
+            Vector3 spawnPoint = new Vector3(
+                obj.transform.position.x,
+                obj.transform.position.y + 0.38f,
+                obj.transform.position.z);
+            Instantiate(turret_2, spawnPoint, obj.transform.rotation);
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 3)
+        {
+            Vector3 spawnPoint = new Vector3(
+                obj.transform.position.x,
+                obj.transform.position.y + 0.38f,
+                obj.transform.position.z);
+            Instantiate(turret_3, spawnPoint, obj.transform.rotation);
+        }
     }
     private void IfItsTurret()
     {
