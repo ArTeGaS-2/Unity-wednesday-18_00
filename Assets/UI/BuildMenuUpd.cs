@@ -32,13 +32,16 @@ public class BuildMenuUpd : MonoBehaviour
     public GameObject turret_1;
     public GameObject turret_2;
     public GameObject turret_3;
+
+    // Модифікатор висоти турелей
+    public float turretHeightMod = -0.2f;
     void Update()
     {
         Ray ray = playerCamera.ScreenPointToRay(
             new Vector3(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 20000f))
+        if (Physics.Raycast(ray, out hit, 20000f) && FPS_Move.gameMode == "Builder")
         {
             currentObject = hit.collider.gameObject;
             if (hit.collider.CompareTag("Frame"))
@@ -86,7 +89,7 @@ public class BuildMenuUpd : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
-                obj.transform.position.y + 0.38f,
+                obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_1, spawnPoint, obj.transform.rotation);
         }
@@ -94,7 +97,7 @@ public class BuildMenuUpd : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
-                obj.transform.position.y + 0.38f,
+                obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_2, spawnPoint, obj.transform.rotation);
         }
@@ -102,7 +105,7 @@ public class BuildMenuUpd : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
-                obj.transform.position.y + 0.38f,
+                obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_3, spawnPoint, obj.transform.rotation);
         }
