@@ -54,10 +54,16 @@ public class BuildMenuUpd : MonoBehaviour
                 buildText.SetActive(false);
             }
 
-            if (hit.collider.CompareTag("Foundation"))
+            if (hit.collider.CompareTag("Foundation") &&
+                !hit.collider.gameObject.GetComponent<FoundationBlock>(
+                    ).ifTurretCreated)
             {
                 IfItsFoundation(currentObject);
                 turretPanel.SetActive(true);
+
+                // Перемикає стан флага турелі
+                hit.collider.gameObject.GetComponent<FoundationBlock>(
+                    ).ifTurretCreated = true;
             }
             else
             {
