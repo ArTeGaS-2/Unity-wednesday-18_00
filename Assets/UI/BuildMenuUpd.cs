@@ -44,7 +44,9 @@ public class BuildMenuUpd : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 20000f) && FPS_Move.gameMode == "Builder")
         {
             currentObject = hit.collider.gameObject;
-            if (hit.collider.CompareTag("Frame"))
+            if (hit.collider.CompareTag("Frame") &&
+                !hit.collider.gameObject.GetComponent<FrameObj>(
+                    ).ifFoundationSet)
             {
                 IfItsFrame(currentObject);
                 buildText.SetActive(true);
@@ -60,10 +62,6 @@ public class BuildMenuUpd : MonoBehaviour
             {
                 IfItsFoundation(currentObject);
                 turretPanel.SetActive(true);
-
-                // Перемикає стан флага турелі
-                hit.collider.gameObject.GetComponent<FoundationBlock>(
-                    ).ifTurretCreated = true;
             }
             else
             {
@@ -87,6 +85,7 @@ public class BuildMenuUpd : MonoBehaviour
                 obj.transform.position.y + 0.38f,
                 obj.transform.position.z);
             Instantiate(foundation, spawnPoint, obj.transform.rotation);
+            obj.GetComponent<FrameObj>().ifFoundationSet = true;
         }
     }
     private void IfItsFoundation(GameObject obj)
@@ -98,6 +97,8 @@ public class BuildMenuUpd : MonoBehaviour
                 obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_1, spawnPoint, obj.transform.rotation);
+            // Перемикає стан флага турелі
+            obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
         }
         else if(Input.GetKeyDown(KeyCode.E) && currentFrameUI == 2)
         {
@@ -106,6 +107,9 @@ public class BuildMenuUpd : MonoBehaviour
                 obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_2, spawnPoint, obj.transform.rotation);
+            // Перемикає стан флага турелі
+            obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
+
         }
         else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 3)
         {
@@ -114,6 +118,8 @@ public class BuildMenuUpd : MonoBehaviour
                 obj.transform.position.y + turretHeightMod,
                 obj.transform.position.z);
             Instantiate(turret_3, spawnPoint, obj.transform.rotation);
+            // Перемикає стан флага турелі
+            obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
         }
     }
     private void IfItsTurret()
