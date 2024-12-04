@@ -62,6 +62,9 @@ public class BuildMenuUpd : MonoBehaviour
             {
                 IfItsFoundation(currentObject);
                 turretPanel.SetActive(true);
+                Select_1_Turret();
+                Select_2_Turret();
+                Select_3_Turret();
             }
             else
             {
@@ -125,5 +128,53 @@ public class BuildMenuUpd : MonoBehaviour
     private void IfItsTurret()
     {
 
+    }
+    void SelectFrame(int frameNumber)
+    {
+        // Скидання кольорів всіх рамок до білого
+        frame1.color = defaultColor;
+        frame2.color = defaultColor;
+        frame3.color = defaultColor;
+
+        // Встановлення кольору виділення для обраної рамки
+        switch (frameNumber)
+        {
+            case 1:
+                frame1.color = highlightColor;
+                break;
+            case 2:
+                frame2.color = highlightColor;
+                break;
+            case 3:
+                frame3.color = highlightColor;
+                break;
+        }
+    }
+    public void Select_1_Turret()
+    {
+        // Перевірка натискання клавіш
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SelectFrame(1);
+            currentFrameUI = 1;
+        }
+    }
+    public void Select_2_Turret()
+    {
+        // Перевірка натискання клавіш
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectFrame(2);
+            currentFrameUI = 2;
+        }
+    }
+    public void Select_3_Turret()
+    {
+        // Перевірка натискання клавіш
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectFrame(3);
+            currentFrameUI = 3;
+        }
     }
 }
