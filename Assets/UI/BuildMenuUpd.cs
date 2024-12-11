@@ -81,7 +81,8 @@ public class BuildMenuUpd : MonoBehaviour
     }
     private void IfItsFrame(GameObject obj)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) &&
+            Economy.Instance.foundations > 0)
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
@@ -89,11 +90,14 @@ public class BuildMenuUpd : MonoBehaviour
                 obj.transform.position.z);
             Instantiate(foundation, spawnPoint, obj.transform.rotation);
             obj.GetComponent<FrameObj>().ifFoundationSet = true;
+            // Додаємо виклик економіки
+            Economy.Instance.MinusFoundation();
         }
     }
     private void IfItsFoundation(GameObject obj)
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 1)
+        if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 1 &&
+            Economy.Instance.credits >= Economy.Instance.turretPrice)
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
@@ -102,8 +106,11 @@ public class BuildMenuUpd : MonoBehaviour
             Instantiate(turret_1, spawnPoint, obj.transform.rotation);
             // Перемикає стан флага турелі
             obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
+            // Виклик економіки
+            Economy.Instance.MinusCredits();
         }
-        else if(Input.GetKeyDown(KeyCode.E) && currentFrameUI == 2)
+        else if(Input.GetKeyDown(KeyCode.E) && currentFrameUI == 2 &&
+            Economy.Instance.credits >= Economy.Instance.turretPrice)
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
@@ -112,9 +119,11 @@ public class BuildMenuUpd : MonoBehaviour
             Instantiate(turret_2, spawnPoint, obj.transform.rotation);
             // Перемикає стан флага турелі
             obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
-
+            // Виклик економіки
+            Economy.Instance.MinusCredits();
         }
-        else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 3)
+        else if (Input.GetKeyDown(KeyCode.E) && currentFrameUI == 3 &&
+            Economy.Instance.credits >= Economy.Instance.turretPrice)
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
@@ -123,6 +132,8 @@ public class BuildMenuUpd : MonoBehaviour
             Instantiate(turret_3, spawnPoint, obj.transform.rotation);
             // Перемикає стан флага турелі
             obj.GetComponent<FoundationBlock>().ifTurretCreated = true;
+            // Виклик економіки
+            Economy.Instance.MinusCredits();
         }
     }
     private void IfItsTurret()

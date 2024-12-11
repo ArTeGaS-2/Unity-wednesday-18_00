@@ -10,6 +10,8 @@ public class Economy : MonoBehaviour
     public int foundations = 8;
     public int credits = 500;
 
+    public int turretPrice = 100;
+
     public TextMeshProUGUI foundationsText;
     public TextMeshProUGUI creditsText;
 
@@ -25,10 +27,12 @@ public class Economy : MonoBehaviour
     public void MinusFoundation()
     {
         foundations--;
+        foundationsText.text = foundations.ToString();
     }
     public void MinusCredits()
     {
-        credits = credits - 100;
+        credits = credits - turretPrice;
+        creditsText.text = credits.ToString();
     }
 
 }
