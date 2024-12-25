@@ -750,6 +750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foundations: 8
   credits: 500
+  baseEnemyPrice: 10
+  turretPrice: 100
   foundationsText: {fileID: 730402529}
   creditsText: {fileID: 909438050}
   economyUI: {fileID: 687208484}
@@ -782,6 +784,7 @@ MonoBehaviour:
   turret_3: {fileID: 6717498111638510441, guid: 7c05a76498c1f9143bf57a0e0243097b,
     type: 3}
   turretHeightMod: -0.6
+  foundationHeightMod: 0.5
 --- !u!1001 &541565139
 PrefabInstance:
   m_ObjectHideFlags: 0

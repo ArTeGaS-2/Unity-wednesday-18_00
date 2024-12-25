@@ -5,10 +5,11 @@ using TMPro;
 
 public class Economy : MonoBehaviour
 {
-    public static Economy Instance;
+    public static Economy Instance; // Сінглтон
 
     public int foundations = 8;
     public int credits = 500;
+    public int baseEnemyPrice = 10; // Базова ціна за ворога
 
     public int turretPrice = 100;
 
@@ -34,5 +35,10 @@ public class Economy : MonoBehaviour
         credits = credits - turretPrice;
         creditsText.text = credits.ToString();
     }
-
+    // Додає кредити за вбивство
+    public void CreditsForKillsEnemies()
+    {
+        credits += baseEnemyPrice; // Додаємо кредити
+        creditsText.text = credits.ToString(); // Оновлюємо текст
+    }
 }

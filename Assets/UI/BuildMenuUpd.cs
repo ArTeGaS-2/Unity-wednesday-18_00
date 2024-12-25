@@ -35,6 +35,7 @@ public class BuildMenuUpd : MonoBehaviour
 
     // Модифікатор висоти турелей
     public float turretHeightMod = -0.2f;
+    public float foundationHeightMod = 0f;
     void Update()
     {
         Ray ray = playerCamera.ScreenPointToRay(
@@ -86,7 +87,7 @@ public class BuildMenuUpd : MonoBehaviour
         {
             Vector3 spawnPoint = new Vector3(
                 obj.transform.position.x,
-                obj.transform.position.y + 0.38f,
+                obj.transform.position.y + foundationHeightMod,
                 obj.transform.position.z);
             Instantiate(foundation, spawnPoint, obj.transform.rotation);
             obj.GetComponent<FrameObj>().ifFoundationSet = true;

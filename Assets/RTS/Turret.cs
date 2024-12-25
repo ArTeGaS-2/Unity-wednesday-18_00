@@ -93,6 +93,7 @@ public class Turret : MonoBehaviour
         {
             enemiesInRange.Remove(enemy.gameObject);
             Destroy(enemy.gameObject);
+            Economy.Instance.CreditsForKillsEnemies(); // Монети за ворога
             Debug.Log("TurretHit");
         }
     }
