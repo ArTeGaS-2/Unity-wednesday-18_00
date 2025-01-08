@@ -9,6 +9,8 @@ public class EnemyAgent : MonoBehaviour
     public string targetName;
     public Slider hitPoints;
 
+    public int currentTier;
+
     private GameObject target;
     private NavMeshAgent agent; // Змінна для компонента NavMeshAgent
 
