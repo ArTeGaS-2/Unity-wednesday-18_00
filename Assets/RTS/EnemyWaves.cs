@@ -6,6 +6,14 @@ public class EnemyWaves : MonoBehaviour
 {
     public List<GameObject> enemyPrefabs; // Шаблони ворогів
     public GameObject emptySpawnPoint; // Точка спавну
+    // Пули об'єктів
+    private List<GameObject> enemyPool_1;
+    private List<GameObject> enemyPool_2;
+    private List<GameObject> enemyPool_3;
+    private List<GameObject> enemyPool_4;
+    private List<GameObject> enemyPool_5;
+
+    private int currentPoolIndex = 0; // Поточний пулл
 
     public int waveCount; // Кількість хвиль
 
@@ -16,6 +24,8 @@ public class EnemyWaves : MonoBehaviour
     private int waveTier_4 = 1;
 
     private int currentTier;
+
+    private int currentWave = 1;
     private void Start()
     {
         foreach (GameObject enemyObj in enemyPrefabs)
@@ -37,8 +47,31 @@ public class EnemyWaves : MonoBehaviour
             }
             for(int i = 0; i < currentTier; i++)
             {
-                Instantiate(enemyObj, transform.position, Quaternion.identity);
+                GameObject currentObj = Instantiate(
+                    enemyObj, transform.position, Quaternion.identity);
+
+                currentObj.SetActive(false);
+                switch (currentPoolIndex)
+                {
+                    case 0:
+                        enemyPool_1.Add(currentObj);
+                        break;
+                    case 1:
+                        enemyPool_2.Add(currentObj);
+                        break;
+                    case 2:
+                        enemyPool_3.Add(currentObj);
+                        break;
+                    case 3:
+                        enemyPool_4.Add(currentObj);
+                        break;
+                    case 4:
+                        enemyPool_5.Add(currentObj);
+                        break;
+
+                }
             }
+            currentPoolIndex++;
         }
     }
     private void Update()
