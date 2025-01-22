@@ -26,10 +26,23 @@ public class EnemyWaves : MonoBehaviour
     private int currentTier;
 
     private int currentWave = 1;
+
+    public float spawnWaveDelay = 15f;
+    private void Awake()
+    {
+        // Наповнює пули ворогами при старті гри
+        SpawnWave();
+    }
     private void Start()
     {
+        StartCoroutine(ActivateSpawn());
+    }
+    private void SpawnWave()
+    {
+        // Цикл що перебирає шаблони ворогів
         foreach (GameObject enemyObj in enemyPrefabs)
         {
+            // Визначає Tier поточного ворога
             switch (enemyObj.gameObject.GetComponent<EnemyAgent>().currentTier)
             {
                 case 1:
@@ -45,12 +58,14 @@ public class EnemyWaves : MonoBehaviour
                     currentTier = waveTier_4;
                     break;
             }
-            for(int i = 0; i < currentTier; i++)
+            // Створює та деактивує екземпляри цього шаблону
+            for (int i = 0; i < currentTier; i++)
             {
                 GameObject currentObj = Instantiate(
                     enemyObj, transform.position, Quaternion.identity);
 
                 currentObj.SetActive(false);
+                // Додає екземпляр до пулу
                 switch (currentPoolIndex)
                 {
                     case 0:
@@ -71,7 +86,42 @@ public class EnemyWaves : MonoBehaviour
 
                 }
             }
+            // Визначає індекс наступного шаблону
             currentPoolIndex++;
+        }
+        // Додає індекс лічильнику хвиль
+        currentWave++;
+    }
+    private IEnumerator ActivateSpawn()
+    {
+        foreach (GameObject obj in enemyPool_1)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(2f);
+        }
+        yield return new WaitForSeconds(spawnWaveDelay);
+        foreach (GameObject obj in enemyPool_2)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(2f);
+        }
+        yield return new WaitForSeconds(spawnWaveDelay);
+        foreach (GameObject obj in enemyPool_3)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(2f);
+        }
+        yield return new WaitForSeconds(spawnWaveDelay);
+        foreach (GameObject obj in enemyPool_4)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(2f);
+        }
+        yield return new WaitForSeconds(spawnWaveDelay);
+        foreach (GameObject obj in enemyPool_5)
+        {
+            obj.SetActive(true);
+            yield return new WaitForSeconds(2f);
         }
     }
     private void Update()
