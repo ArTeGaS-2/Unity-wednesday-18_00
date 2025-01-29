@@ -14,10 +14,15 @@ public class EnemyAgent : MonoBehaviour
     private GameObject target;
     private NavMeshAgent agent; // Змінна для компонента NavMeshAgent
 
+    public int maxHitPoints = 5; // Максимальна кількість ХП
+
     private void Start()
     {
-        hitPoints.value = 5;
-
+        // Визначає максимальну кількість ХП (здоровья)
+        hitPoints.maxValue = maxHitPoints;
+        // Визначає поточне значення ХП
+        hitPoints.value = maxHitPoints;
+        
         target = GameObject.Find(targetName);
         agent = GetComponent<NavMeshAgent>(); // Отримання компонента NavMeshAgent
         if (target != null)
