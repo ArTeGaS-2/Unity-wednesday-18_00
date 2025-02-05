@@ -14,10 +14,7 @@ public class FPS_Move : MonoBehaviour
 
     private float sprintSpeed;
 
-    public GameObject weapon;
-    public GameObject buildInterface;
-
-    public static string gameMode = "Shooter";
+    
 
     void Start()
     {
@@ -30,20 +27,6 @@ public class FPS_Move : MonoBehaviour
     void Update()
     {
         LookAround();
-        GameMode();
-    }
-
-    void FixedUpdate()
-    {
-        switch (gameMode)
-        {
-            case "Shooter":
-                MovePlayer();
-                break;
-            case "Builder":
-                FlyPlayer();
-                break;
-        }
     }
 
     void LookAround()
@@ -105,25 +88,6 @@ public class FPS_Move : MonoBehaviour
         else
         {
             rb.velocity = movement * moveSpeed + new Vector3(0, 0, 0); //rb.velocity.y
-        }
-    }
-    void GameMode()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            weapon.SetActive(!weapon.activeSelf);
-            buildInterface.SetActive(!buildInterface.activeSelf);
-            switch (gameMode)
-            {
-                case "Shooter":
-                    gameMode = "Builder";
-                    Debug.Log("Builder");
-                    break;
-                case "Builder":
-                    gameMode = "Shooter";
-                    Debug.Log("Shooter Mode");
-                    break;
-            }
         }
     }
 }

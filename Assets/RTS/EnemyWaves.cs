@@ -30,6 +30,12 @@ public class EnemyWaves : MonoBehaviour
     public float spawnWaveDelay = 15f;
     private void Awake()
     {
+        enemyPool_1 = new List<GameObject>();
+        enemyPool_2 = new List<GameObject>();
+        enemyPool_3 = new List<GameObject>();
+        enemyPool_4 = new List<GameObject>();
+        enemyPool_5 = new List<GameObject>();
+
         // Наповнює пули ворогами при старті гри
         SpawnWave();
     }
