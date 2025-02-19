@@ -42,7 +42,8 @@ public class BuildMenuUpd : MonoBehaviour
             new Vector3(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 20000f) && FPS_Move.gameMode == "Builder")
+        if (Physics.Raycast(ray, out hit, 20000f) &&
+            Game_Manager.Instance.currentGameMode == "Builder")
         {
             currentObject = hit.collider.gameObject;
             if (hit.collider.CompareTag("Frame") &&

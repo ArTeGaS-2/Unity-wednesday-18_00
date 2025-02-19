@@ -14,8 +14,6 @@ public class FPS_Move : MonoBehaviour
 
     private float sprintSpeed;
 
-    
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,6 +25,7 @@ public class FPS_Move : MonoBehaviour
     void Update()
     {
         LookAround();
+        MovePlayer();
     }
 
     void LookAround()

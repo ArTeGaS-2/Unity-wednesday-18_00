@@ -14,8 +14,8 @@ public class Game_Manager : MonoBehaviour
     public GameObject buildInterface;
 
     // Ігрові режими: "Builder" та "Shooter"
-    private string currentGameMode = "Builder";
-    private string secondGameMode = "Shooter";
+    public string currentGameMode = "Builder";
+    public string secondGameMode = "Shooter";
 
     // Індекс наступного спавнера для активації
     private int nextSpawnerIndex = 0;
@@ -44,6 +44,15 @@ public class Game_Manager : MonoBehaviour
             NoActiveSpawner())
         {
             ActivateSpawner();
+        }
+        // Якщо режим
+        if (currentGameMode == "Shooter")
+        {
+            if(GameObject.FindGameObjectsWithTag("Enemy").Length ==
+                0 && NoActiveSpawner())
+            {
+                SwitchToBuilder();
+            }
         }
     }
     // Допоміжний метод для перевірки, що жоден спавнер не активний
@@ -84,5 +93,4 @@ public class Game_Manager : MonoBehaviour
         buildInterface.SetActive(true);
         Debug.Log("Хвиля завершена. Режим змінено на Builder.");
     }
-
 }
