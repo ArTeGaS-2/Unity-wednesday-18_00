@@ -305,10 +305,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6900937440281202225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd43433c39fef5946a4043c05e97bd0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 57bb319e014b29941b0f7f9f33d22954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: Core
+  targetName: 
   hitPoints: {fileID: 8426888033981554557}
   currentTier: 4
   maxHitPoints: 50
@@ -322,7 +322,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 360
