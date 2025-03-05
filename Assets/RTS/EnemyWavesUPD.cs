@@ -38,6 +38,7 @@ public class EnemyWavesUPD : MonoBehaviour
             int tier = prefab.GetComponent<EnemyAgent>().currentTier;
             // Оскільки tier починаються з 1, а індекси масиву - з 0:
             int countForThisPrefab = enemiesPerTier[tier - 1];
+
             for (int j = 0; j < countForThisPrefab; j++)
             {
                 // Створюємо ворога на позиції спавнера

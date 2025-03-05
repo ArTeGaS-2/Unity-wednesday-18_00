@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bb319e014b29941b0f7f9f33d22954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetName: 
+  targetName: Core
   hitPoints: {fileID: 8426888033981554557}
   currentTier: 1
   maxHitPoints: 5
