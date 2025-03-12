@@ -15,6 +15,7 @@ public class EnemyAgent : MonoBehaviour
     private NavMeshAgent agent; // Змінна для компонента NavMeshAgent
 
     public int maxHitPoints = 5; // Максимальна кількість ХП
+    public int enemyPrice = 5;
 
     private void Start()
     {
@@ -39,11 +40,14 @@ public class EnemyAgent : MonoBehaviour
             StartCoroutine(StopMoving());
         }
     }
-
     IEnumerator StopMoving()
     {
         agent.isStopped = true; // Зупинка NavMeshAgent
         yield return new WaitForSeconds(3f);
         agent.isStopped = false; // Відновлення руху NavMeshAgent
+    }
+    private void OnDestroy()
+    {
+        Economy.Instance.CreditsForKillsEnemies(enemyPrice);
     }
 }

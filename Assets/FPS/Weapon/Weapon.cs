@@ -81,8 +81,6 @@ public class Weapon : MonoBehaviour
                     else if (enemy != null && enemy.hitPoints.value <= 1)
                     {
                         Destroy(hit.collider.gameObject);
-                        Economy.Instance.CreditsForKillsEnemies(); // Монети за ворогів
-                        Debug.Log("Hit");
                     }
                 }
             }

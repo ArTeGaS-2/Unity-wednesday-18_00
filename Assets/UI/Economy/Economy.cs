@@ -9,7 +9,9 @@ public class Economy : MonoBehaviour
 
     public int foundations = 8;
     public int credits = 500;
+
     public int baseEnemyPrice = 10; // Базова ціна за ворога
+    
 
     public int turretPrice = 100;
 
@@ -36,9 +38,9 @@ public class Economy : MonoBehaviour
         creditsText.text = credits.ToString();
     }
     // Додає кредити за вбивство
-    public void CreditsForKillsEnemies()
+    public void CreditsForKillsEnemies(int price)
     {
-        credits += baseEnemyPrice; // Додаємо кредити
+        credits += price; // Додаємо кредити
         creditsText.text = credits.ToString(); // Оновлюємо текст
     }
 }
