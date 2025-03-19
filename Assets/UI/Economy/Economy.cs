@@ -7,19 +7,23 @@ public class Economy : MonoBehaviour
 {
     public static Economy Instance; // Сінглтон
 
-    public int foundations = 8;
-    public int credits = 500;
+    public int foundations = 8; // Фундаменти поточні і на початку
+    public int credits = 500; // Кількість кредитів 
 
-    public int baseEnemyPrice = 10; // Базова ціна за ворога
-    
+    public int foundationsPerWave = 6; // Фундаменти за хвилю
 
-    public int turretPrice = 100;
+    public int turretPrice = 100; // Ціна за встановлену турель
 
     public TextMeshProUGUI foundationsText;
     public TextMeshProUGUI creditsText;
 
     public GameObject economyUI;
-
+    public void AddFoundationsPerWave()
+    {
+        // Додаємо після хвилі фоундейшени для будівництіва
+        foundations += foundationsPerWave;
+        foundationsText.text = foundations.ToString();
+    }
     private void Start()
     {
         Instance = this;

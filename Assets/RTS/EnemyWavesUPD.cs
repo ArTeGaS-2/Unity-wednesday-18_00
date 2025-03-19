@@ -20,6 +20,9 @@ public class EnemyWavesUPD : MonoBehaviour
     // Динамічна структура: кожег префаб отримує свій пул ворогів
     private List<List<GameObject>> enemyPools;
 
+    // Поточна хвиля
+    [HideInInspector]public int currentWaveCount = 0;
+
     private void Awake()
     {
         // Ініціалізуємо список пулів
@@ -56,6 +59,7 @@ public class EnemyWavesUPD : MonoBehaviour
     }
     private IEnumerator ActivateSpawn()
     {
+        currentWaveCount++; // Додаємо 1 до поточного значення.
         // Проходимо по кожному пулу ворогів
         foreach (List<GameObject> pool in enemyPools)
         {
@@ -68,6 +72,9 @@ public class EnemyWavesUPD : MonoBehaviour
             // Після завершення хвилі - затримка
             yield return new WaitForSeconds(spawnWaveDelay);
         }
+        // Додаємо фоундейшени в кінці хвилі
+        Economy.Instance.AddFoundationsPerWave();
+        
         // Вимикаємо спавнер
         gameObject.SetActive(false);
     }
