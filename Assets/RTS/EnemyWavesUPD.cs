@@ -56,9 +56,11 @@ public class EnemyWavesUPD : MonoBehaviour
     {
         // Запускаємо корутіну, яка послідовно активує ворогів з кожного пулу
         StartCoroutine(ActivateSpawn());
+        WavesCount.Instance.CountTotalWave(enemyPrefabs);
     }
     private IEnumerator ActivateSpawn()
     {
+        WavesCount.Instance.CountCurrentWave();
         currentWaveCount++; // Додаємо 1 до поточного значення.
         // Проходимо по кожному пулу ворогів
         foreach (List<GameObject> pool in enemyPools)
