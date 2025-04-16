@@ -14,4 +14,6 @@ public class Turret_UI : MonoBehaviour
     public TextMeshProUGUI radiusText;
     public TextMeshProUGUI DMG_Type_Text;
     public TextMeshProUGUI priceText;
+
+
 }

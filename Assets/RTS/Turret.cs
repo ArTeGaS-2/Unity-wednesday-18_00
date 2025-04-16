@@ -13,6 +13,19 @@ public class Turret : MonoBehaviour
     public float rotationSpeed = 5f; // Швидкість обертання
     public float tiltAngle = 30f; // Максимальний кут нахилу
 
+    [Header("Параметри турелі")]
+
+    public string turretName = "Turret"; // Назва турелі
+    public float turretDamage = 1f; // Урон
+    public float turretAttackSpeed = 1f; // Інтервал
+    public float turretRange = 10f; // Радіус турелі
+    public string turretDamageType = "Bullet"; // Спосіб нанесення урону
+    public float baseBuildPrice = 100f; // Базова ціна турелі
+    public float baseUpgradePrice = 120f; // Ціна апгрейду турелі
+
+    private int upgradeCount = 1; // Поточний апгрейд
+    private float currentUpgradePrice; // Поточна ціна апгрейду
+
     private Transform enemy; // Ціль ворога
     private EnemyAgent enemyAgent;
     private List<GameObject> enemiesInRange;
@@ -23,6 +36,11 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         enemiesInRange = new List<GameObject>();
+
+    }
+    public void SetUpgradePrice()
+    {
+        currentUpgradePrice = baseBuildPrice + baseUpgradePrice * upgradeCount;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -87,7 +105,7 @@ public class Turret : MonoBehaviour
 
         if (enemy != null && enemyAgent.hitPoints.value > 1)
         {
-            enemyAgent.hitPoints.value--;
+            enemyAgent.hitPoints.value -= turretDamage;
         }
         else if (enemy != null && enemyAgent.hitPoints.value <= 1)
         {
@@ -98,7 +116,7 @@ public class Turret : MonoBehaviour
     IEnumerator Reload()
     {
         reload = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(turretAttackSpeed);
         reload = false;
     }
 }
