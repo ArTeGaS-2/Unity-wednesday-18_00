@@ -680,6 +680,7 @@ GameObject:
   - component: {fileID: 436478868}
   - component: {fileID: 436478872}
   - component: {fileID: 436478873}
+  - component: {fileID: 436478874}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -823,6 +824,24 @@ MonoBehaviour:
     type: 3}
   turretHeightMod: -0.6
   foundationHeightMod: 0.5
+--- !u!114 &436478874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436478867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6491b6f95bbca0408e1532002a042ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade_buy_UI: {fileID: 259884146}
+  nameText: {fileID: 444808424}
+  DPS_Text: {fileID: 860494700}
+  radiusText: {fileID: 1309904293}
+  DMG_Type_Text: {fileID: 1281457816}
+  priceText: {fileID: 1651077430}
 --- !u!1 &444808422
 GameObject:
   m_ObjectHideFlags: 0

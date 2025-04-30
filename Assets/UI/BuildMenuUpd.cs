@@ -77,7 +77,12 @@ public class BuildMenuUpd : MonoBehaviour
                 hit.collider.CompareTag("Turret_2") ||
                 hit.collider.CompareTag("Turret_3"))
             {
-                IfItsTurret();
+                Turret_UI.instance.Turret_Window_Activate();
+                Turret_UI.instance.Turret_Info(hit);
+            }
+            else
+            {
+                Turret_UI.instance.Turret_Window_Deactivate();
             }
         }
     }
@@ -137,10 +142,6 @@ public class BuildMenuUpd : MonoBehaviour
             // Виклик економіки
             Economy.Instance.MinusCredits();
         }
-    }
-    private void IfItsTurret()
-    {
-
     }
     void SelectFrame(int frameNumber)
     {
