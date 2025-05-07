@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 436478872}
   - component: {fileID: 436478873}
   - component: {fileID: 436478874}
+  - component: {fileID: 436478875}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -842,6 +843,23 @@ MonoBehaviour:
   radiusText: {fileID: 1309904293}
   DMG_Type_Text: {fileID: 1281457816}
   priceText: {fileID: 1651077430}
+--- !u!114 &436478875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436478867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3981c81971bee4287b94e6e007d77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wavesCountText: {fileID: 1702048137}
+  waveStageCounter: 0
+  waveStageTotal: 0
+  waveCounter: 0
+  waveTotalInStage: 0
 --- !u!1 &444808422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,7 +2944,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "1\\2 - \u0425\u0432\u0438\u043B\u0456. 1\\2 - \u0421\u0442\u0430\u0434\u0456\u044F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

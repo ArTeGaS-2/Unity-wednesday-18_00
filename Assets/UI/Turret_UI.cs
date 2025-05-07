@@ -24,7 +24,7 @@ public class Turret_UI : MonoBehaviour
     {
         // Отримуємо посилання на скрипт турелі для поточної турелі
         currentTurret = hit.collider.gameObject.
-            GetComponent<Turret>();
+            GetComponentInChildren<Turret>();
 
         // Ім'я турелі
         nameText.text = currentTurret.turretName;
