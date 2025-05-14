@@ -61,6 +61,7 @@ public class EnemyWavesUPD : MonoBehaviour
     private IEnumerator ActivateSpawn()
     {
         WavesCount.Instance.wavesCountText.gameObject.SetActive(true);
+        WavesCount.Instance.CountCurrentStage();
 
         currentWaveCount++; // Додаємо 1 до поточного значення.
         // Проходимо по кожному пулу ворогів
@@ -79,7 +80,7 @@ public class EnemyWavesUPD : MonoBehaviour
         // Додаємо фоундейшени в кінці хвилі
         Economy.Instance.AddFoundationsPerWave();
 
-        WavesCount.Instance.CountCurrentStage();
+        
         WavesCount.Instance.ResetWaveCounter();
 
         // Вимикаємо спавнер
