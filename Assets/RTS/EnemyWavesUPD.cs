@@ -60,11 +60,13 @@ public class EnemyWavesUPD : MonoBehaviour
     }
     private IEnumerator ActivateSpawn()
     {
-        WavesCount.Instance.CountCurrentWave();
+        WavesCount.Instance.wavesCountText.gameObject.SetActive(true);
+
         currentWaveCount++; // Додаємо 1 до поточного значення.
         // Проходимо по кожному пулу ворогів
         foreach (List<GameObject> pool in enemyPools)
         {
+            WavesCount.Instance.CountCurrentWave();
             // Активація кожного ворога з поточного пулу з затримкою
             foreach (GameObject enemy in pool)
             {
@@ -76,8 +78,12 @@ public class EnemyWavesUPD : MonoBehaviour
         }
         // Додаємо фоундейшени в кінці хвилі
         Economy.Instance.AddFoundationsPerWave();
-        
+
+        WavesCount.Instance.CountCurrentStage();
+        WavesCount.Instance.ResetWaveCounter();
+
         // Вимикаємо спавнер
         gameObject.SetActive(false);
+        WavesCount.Instance.wavesCountText.gameObject.SetActive(false);
     }
 }

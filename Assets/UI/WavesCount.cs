@@ -14,9 +14,13 @@ public class WavesCount : MonoBehaviour
 
     public int waveCounter = 0; // Лічильник хвиль у спавнері
     public int waveTotalInStage = 0; // Загалом в поточному спавнері
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+
+        waveStageTotal = FindObjectsOfType<EnemyWavesUPD>(true).Length;
+        SetText();
+        wavesCountText.gameObject.SetActive(false);
     }
     private void SetText()
     {
