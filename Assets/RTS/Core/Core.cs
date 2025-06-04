@@ -16,41 +16,52 @@ public class Core : MonoBehaviour
 
     private bool canTakeDamage = true; // Індикатор того, чи може ядро отримати дмг
 
+    private int enemiesInTrigger = 0; // Кількість ворогів у зоні тригеру
+    private void Awake()
+    {
+        Instance = this; // Розміщуємо екземпляр в змінній
+    }
     private void Start()
     {
         currentHp = maxHp; // Встановлюємо поточне хп як масимальне
-
         // Встановлюємо в текст поточні значення
         coreHpText.text = $"{currentHp} / {maxHp}";
         // Примусово встановлюємо пікові значення слайдеру
-        coreHpSlider.maxValue = maxHp; 
-        coreHpSlider.minValue = 0;
-
-        //StartCoroutine(TakeDamageIndicatorSwitch());
+        coreHpSlider.maxValue = maxHp; // Максимальне хп в слайдері
+        coreHpSlider.minValue = 0; // Мінімальне хп в слайдері
+        coreHpSlider.value = currentHp; // Поточне хп в слайдері
+        StartCoroutine(DamageOverTime());
     }
-    IEnumerator TakeDamageIndicatorSwitch()
+    IEnumerator DamageOverTime()
     {
         while (true)
         {
-            canTakeDamage = true;
-            yield return new WaitForSeconds(0.1f);
-            canTakeDamage = false;
+            yield return new WaitForSeconds(1f);
+            if (enemiesInTrigger > 0) // Якщо ворогів більше 0
+            {
+                int totalDamage = 5 * enemiesInTrigger; // Кількість ДМГ
+                currentHp -= totalDamage; // Знімає ХП
+                if (currentHp < 0) currentHp = 0; // Щоб хп було не менше 0
+
+                //UpdateSliderAndText();
+            }
         }
     }
-    void DoDamage()
+    private void OnTriggerEnter(Collider other)
     {
-        if (canTakeDamage)
+        if (other.CompareTag("Enemy")) enemiesInTrigger++;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
         {
-            currentHp -= 5;
-            coreHpText.text = $"{currentHp} / {maxHp}";
+            // Не дає кількості бути відмінною, але знижує за кожен вихід
+            enemiesInTrigger = Mathf.Max(0, enemiesInTrigger - 1);
         }
     }
-    void OnCollisionEnter(Collision collision)
+    public void UpdateSliderAndText()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            DoDamage();
-            Debug.Log("123");
-        }
+        coreHpText.text = $"{currentHp} / {maxHp}";
+        coreHpSlider.value = currentHp;
     }
 }
